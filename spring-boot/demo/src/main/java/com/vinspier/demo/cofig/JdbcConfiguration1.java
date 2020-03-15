@@ -15,8 +15,11 @@ import javax.sql.DataSource;
 @EnableConfigurationProperties(JdbcProperties.class)
 public class JdbcConfiguration1 {
 
-    @Autowired
-    private JdbcProperties jdbcProperties;
+    /**
+     * 经典注入方式
+     * */
+   /* @Autowired
+    private JdbcProperties jdbcProperties;*/
 
     /**
      * 构造参数注入
@@ -26,7 +29,7 @@ public class JdbcConfiguration1 {
 //        this.jdbcProperties = jdbcProperties;
 //    }
 
-    @Bean
+   /* @Bean
     public DataSource dataSource(){
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(jdbcProperties.getDriverClassName());
@@ -34,7 +37,7 @@ public class JdbcConfiguration1 {
         dataSource.setUsername(jdbcProperties.getUsername());
         dataSource.setPassword(jdbcProperties.getPassword());
         return dataSource;
-    }
+    }*/
 
     /**
      * 形参注入方式
@@ -52,11 +55,11 @@ public class JdbcConfiguration1 {
     /**
      * 注解式注入
      * */
-//    @Bean
-//    @ConfigurationProperties(prefix = "jdbc")
-//    public DataSource dataSource(){
-//        DruidDataSource dataSource = new DruidDataSource();
-//        return dataSource;
-//    }
+    @Bean
+    @ConfigurationProperties(prefix = "jdbc")
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        return dataSource;
+    }
 
 }

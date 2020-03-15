@@ -24,19 +24,17 @@
         </dependency>
 
         <!--jdbc的启动器，默认使用HikariCP连接池-->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- Druid连接池 -->
-        <!--
         <dependency>
             <groupId>com.github.drtrang</groupId>
             <artifactId>druid-spring-boot2-starter</artifactId>
             <version>1.1.10</version>
         </dependency>
-        -->
 
         <!--不要忘记数据库驱动，因为springboot不知道我们使用的什么数据库，这里选择mysql-->
         <dependency>
