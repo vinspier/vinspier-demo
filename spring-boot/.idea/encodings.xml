@@ -3,8 +3,11 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/demo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/demo-mvc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-demo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/http-client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/http-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-consumer" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

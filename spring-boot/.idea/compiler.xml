@@ -6,16 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="demo" />
         <module name="demo-mvc" />
+        <module name="eureka-demo" />
         <module name="http-client" />
+        <module name="service-demo" />
+        <module name="user-consumer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="demo" target="1.8" />
       <module name="demo-mvc" target="1.8" />
+      <module name="eureka-demo" target="1.8" />
       <module name="http-client" target="1.8" />
       <module name="httpclient" target="1.5" />
       <module name="mvc-demo" target="1.8" />
+      <module name="service-demo" target="1.8" />
+      <module name="test" target="1.8" />
+      <module name="user-consumer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
