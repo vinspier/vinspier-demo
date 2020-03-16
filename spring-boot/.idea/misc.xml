@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/demo/pom.xml" />
         <option value="$PROJECT_DIR$/demo-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/http-client/pom.xml" />
       </list>
     </option>
   </component>
