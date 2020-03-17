@@ -26,9 +26,15 @@ public class UserController {
         return template;
     }
 
-
     @GetMapping(value = "getById/{id}")
-    public ResponseTemplate getUserById(@PathVariable Long id){
+    public User getUserById(@PathVariable Long id){
+        ResponseTemplate template = ResponseTemplate.createOk();
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
+
+    @GetMapping(value = "getById1/{id}")
+    public ResponseTemplate getUserById1(@PathVariable Long id){
         ResponseTemplate template = ResponseTemplate.createOk();
         User user = userMapper.selectByPrimaryKey(id);
         template.setData(user);

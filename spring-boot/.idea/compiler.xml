@@ -10,6 +10,7 @@
         <module name="demo-mvc" />
         <module name="eureka-demo" />
         <module name="http-client" />
+        <module name="ribbon-demo" />
         <module name="service-demo" />
         <module name="user-consumer" />
       </profile>
@@ -21,6 +22,7 @@
       <module name="http-client" target="1.8" />
       <module name="httpclient" target="1.5" />
       <module name="mvc-demo" target="1.8" />
+      <module name="ribbon-demo" target="1.8" />
       <module name="service-demo" target="1.8" />
       <module name="test" target="1.8" />
       <module name="user-consumer" target="1.8" />
