@@ -7,4 +7,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8080/eureka/ #可注册给多个服务中心
+    fetch-registry: true     #会拉取Eureka Server服务的列表只读备份，然后缓存在本地
+    registry-fetch-interval-seconds: 5 # 拉去服务列表的间隔时间

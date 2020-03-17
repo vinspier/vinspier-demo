@@ -14,4 +14,9 @@ mybatis:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:8081/eureka/,http://localhost:8080/eureka/ #可注册给多个服务中心
+  #服务启动时 是否将本身注册到服务中心
+  register-with-eureka: true
+  instance:
+    lease-expiration-duration-in-seconds: 15 #失效时间 90s
+    lease-renewal-interval-in-seconds: 5 #心态检测间隔 30s
