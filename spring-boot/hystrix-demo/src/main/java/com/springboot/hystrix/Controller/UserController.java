@@ -14,7 +14,15 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
- * 指定一个类的全局降级方法
+ * @DefaultProperties 指定一个类的全局降级方法
+ * 熔断状态机3个状态：
+ * Closed：关闭状态，所有请求都正常访问。
+ *
+ * Open：打开状态，所有请求都会被降级。Hystix会对请求情况计数，
+ * 当一定时间内失败请求百分比达到阈值，则触发熔断，断路器会完全打开。默认失败比例的阈值是50%，请求次数最少不低于20次。
+ *
+ *Half Open：半开状态，open状态不是永久的，打开后会进入休眠时间（默认是5S）。随后断路器会自动进入半开状态。
+ * 此时会释放部分请求通过，若这些请求都是健康的，则会完全关闭断路器，否则继续保持打开，再次进行休眠计时
  * */
 @Controller
 @DefaultProperties(defaultFallback = "globalFallback")
@@ -25,7 +33,7 @@ public class UserController {
     private RestTemplate restTemplate;
 
     /**
-     * 标记该方法需要指定降级方法
+     * @HystrixCommand 标记该方法需要指定降级方法
      * */
     @GetMapping(value = "getById/{id}")
     @HystrixCommand(fallbackMethod = "getUserByIdFallback")
@@ -35,7 +43,7 @@ public class UserController {
     }
 
     /**
-     * 标记该方法需要降级 采用默认降级方法
+     * @HystrixCommand 标记该方法需要降级 采用默认降级方法
      * */
     @GetMapping(value = "getById2/{id}")
     @HystrixCommand
@@ -45,7 +53,7 @@ public class UserController {
     }
 
     /**
-     * 标记该方法需要指定降级方法
+     * @HystrixCommand 标记该方法需要指定降级方法
      * */
     @GetMapping(value = "getById3/{id}")
     @HystrixCommand
