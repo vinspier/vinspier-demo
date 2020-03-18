@@ -1,0 +1,24 @@
+server:
+  port: 84
+spring:
+  application:
+    name: hstrix-user
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/ #可注册给多个服务中心
+    fetch-registry: true     #会拉取Eureka Server服务的列表只读备份，然后缓存在本地
+    registry-fetch-interval-seconds: 5 # 拉去服务列表的间隔时间
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000 # 设置hystrix的超时时间为2000ms
+circuitBreaker:
+  requestVolumeThreshold: 10 #触发熔断的最小请求次数，默认20
+  sleepWindowInMilliseconds: 5000 #休眠时长，默认是5000毫秒
+  errorThresholdPercentage: 40 #触发熔断的失败请求最小占比，默认50%

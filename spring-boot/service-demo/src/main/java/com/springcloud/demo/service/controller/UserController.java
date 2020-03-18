@@ -28,7 +28,6 @@ public class UserController {
 
     @GetMapping(value = "getById/{id}")
     public User getUserById(@PathVariable Long id){
-        ResponseTemplate template = ResponseTemplate.createOk();
         User user = userMapper.selectByPrimaryKey(id);
         return user;
     }
@@ -39,6 +38,22 @@ public class UserController {
         User user = userMapper.selectByPrimaryKey(id);
         template.setData(user);
         return template;
+    }
+
+
+    /**
+     * 当服务发生错误 或者超过调用者指定的熔断时间
+     *
+     * */
+    @GetMapping(value = "getById2/{id}")
+    public User getUserById2(@PathVariable Long id){
+        User user = userMapper.selectByPrimaryKey(id);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            System.out.println("============= 线程休眠2S =============");
+        }
+        return user;
     }
 
 }
