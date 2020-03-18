@@ -1,0 +1,5 @@
+server:
+  port: 8888 #服务端口
+spring:
+  application:
+    name: zuul-gateway #指定服务名
