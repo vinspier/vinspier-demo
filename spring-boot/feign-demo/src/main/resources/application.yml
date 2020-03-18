@@ -22,6 +22,21 @@ circuitBreaker:
   requestVolumeThreshold: 10 #触发熔断的最小请求次数，默认20
   sleepWindowInMilliseconds: 5000 #休眠时长，默认是5000毫秒
   errorThresholdPercentage: 40 #触发熔断的失败请求最小占比，默认50%
+
+# Feign 支持对请求和响应进行GZIP压缩，以减少通信过程中的性能损耗
 feign:
   hystrix:
     enabled: true # 开启Hystrix熔断机制 默认为false
+  compression:
+      request:
+        enabled: true # 开启请求压缩
+        mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+        min-request-size: 2048 # 设置触发压缩的大小下限 2M
+      response:
+        enabled: true # 开启响应压缩
+
+# 通过`logging.level.xx=debug`来设置日志级别。然而这个对Fegin客户端而言不会产生效果。
+# 因为`@FeignClient`注解修改的客户端在被代理时，都会创建一个新的Fegin.Logger实例。我们需要额外指定这个日志的级别才可以。
+logging:
+  level:
+    com.springboot.demo.feign: debug

@@ -1,5 +1,6 @@
 package com.springboot.demo.feign.Client;
 
+import com.springboot.demo.feign.configuration.FeignLogConfiguration;
 import com.springboot.demo.feign.pojo.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Feign默认也有对Hystrix的集成：
  * */
 
-@FeignClient(value = "user-service",fallback = UserFeignClientFallback.class)
+@FeignClient(value = "user-service",fallback = UserFeignClientFallback.class,configuration = FeignLogConfiguration.class)
 public interface UserFeignClient {
 
     @GetMapping("user/getById/{id}")
