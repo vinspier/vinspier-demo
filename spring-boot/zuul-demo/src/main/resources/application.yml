@@ -3,3 +3,33 @@ server:
 spring:
   application:
     name: zuul-gateway #指定服务名
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5 # 获取服务列表的周期：5s
+    service-url:
+      defaultZone: http://127.0.0.1:8080/eureka
+
+zuul:
+  routes:
+    # 简约化配置 zuul.routes.serviceId=path
+    user-service: /user-service/**
+  prefix: /zull-gateway
+    # zuul.routes.<route>.path=/xxx/**
+    # zuul.routes.<route>.serviceId=
+    #user-service: # 这里是路由id，随意写 最好与提供服务的服务实例名相同
+     # path: /user-service/** # 这里是映射路径
+     # serviceId: user-service # 通过服务注册中心去匹配对应的服务 自由灵活
+       ## 映射路径对应的实际url地址 单一固定
+      ## url: http://127.0.0.1:80
+
+# Zuul中默认就已经集成了Ribbon负载均衡和Hystix熔断机制。
+# 但是所有的超时策略都是走的默认值，比如熔断超时时间只有1S，很容易就触发了。因此建议我们手动进行配置：
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 # 设置hystrix的超时时间为6000ms
+
