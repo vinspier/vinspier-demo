@@ -9,7 +9,9 @@
         <module name="demo" />
         <module name="demo-mvc" />
         <module name="eureka-demo" />
+        <module name="feign-demo" />
         <module name="http-client" />
+        <module name="hystrix-demo" />
         <module name="ribbon-demo" />
         <module name="service-demo" />
         <module name="user-consumer" />
@@ -19,8 +21,10 @@
       <module name="demo" target="1.8" />
       <module name="demo-mvc" target="1.8" />
       <module name="eureka-demo" target="1.8" />
+      <module name="feign-demo" target="1.8" />
       <module name="http-client" target="1.8" />
       <module name="httpclient" target="1.5" />
+      <module name="hystrix-demo" target="1.8" />
       <module name="mvc-demo" target="1.8" />
       <module name="ribbon-demo" target="1.8" />
       <module name="service-demo" target="1.8" />

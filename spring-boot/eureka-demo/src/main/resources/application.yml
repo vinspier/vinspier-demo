@@ -18,7 +18,7 @@ eureka:
       defaultZone: http://localhost:8080/eureka/
   server:
     enable-self-preservation: false # 开发下关闭自我保护模式（缺省为打开true） 当一个服务未按时进行心跳续约时 Eureka就会把当前实例的注册信息保护起来，不予剔除
-    eviction-interval-timer-in-ms: 10 #失效的服务剔除出服务列表，单位是毫秒，生产环境不要修改。
+    eviction-interval-timer-in-ms: 10000 #失效的服务剔除出服务列表，单位是毫秒，生产环境不要修改。
 spring:
   application:
     name: eureka-server # 应用名称，会在Eureka中显示
