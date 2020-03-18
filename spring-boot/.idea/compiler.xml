@@ -15,6 +15,7 @@
         <module name="ribbon-demo" />
         <module name="service-demo" />
         <module name="user-consumer" />
+        <module name="zuul-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -30,6 +31,7 @@
       <module name="service-demo" target="1.8" />
       <module name="test" target="1.8" />
       <module name="user-consumer" target="1.8" />
+      <module name="zuul-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

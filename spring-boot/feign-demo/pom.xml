@@ -8,7 +8,7 @@
 		<version>2.1.13.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.springboot.demo</groupId>
+	<groupId>com.vinspier.springcloud.demo</groupId>
 	<artifactId>feign-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>feign-demo</name>

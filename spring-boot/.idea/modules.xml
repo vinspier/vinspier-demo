@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/ribbon-demo/ribbon-demo.iml" filepath="$PROJECT_DIR$/ribbon-demo/ribbon-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-demo/service-demo.iml" filepath="$PROJECT_DIR$/service-demo/service-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-consumer/user-consumer.iml" filepath="$PROJECT_DIR$/user-consumer/user-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul-demo/zuul-demo.iml" filepath="$PROJECT_DIR$/zuul-demo/zuul-demo.iml" />
     </modules>
   </component>
 </project>
