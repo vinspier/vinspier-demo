@@ -16,12 +16,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findByUsername(String username) {
-        return null;
+        return userMapper.selectOne(new User());
     }
 
     @Override
     public User findById(Long id) {
-        return null;
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override

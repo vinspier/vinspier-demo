@@ -9,7 +9,7 @@ spring:
 
 mybatis:
   type-aliases-package: com.vinspier.demo.mvc.pojo
-  mapper-locations: classpath:mappers/*.xml
+  mapper-locations: classpath:mapper/*.xml
 
 
 

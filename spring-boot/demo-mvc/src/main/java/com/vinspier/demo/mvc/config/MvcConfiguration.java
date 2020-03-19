@@ -18,6 +18,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
      * */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        System.out.println("asdasd");
         registry.addInterceptor(myInterceptor).addPathPatterns("/**");
     }
 
