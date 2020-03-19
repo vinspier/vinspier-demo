@@ -1,6 +1,9 @@
 package com.vinspier.customize.template.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.vinspier.customize.template.common.ResponseTemplate;
+import com.vinspier.customize.template.common.ResultCode;
+import com.vinspier.customize.template.exception.CustomizeException;
 import com.vinspier.customize.template.pojo.User;
 import com.vinspier.customize.template.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,17 @@ public class UserController {
         User user = userService.getByUsername(username);
         ResponseTemplate template = ResponseTemplate.ok(user);
         return template;
+    }
+
+    @GetMapping("queryByPrimaryKey1/{id}")
+    @ResponseBody
+    public String queryByPrimaryKey1(@PathVariable Long id){
+        User user = userService.getById(id);
+        if (user == null){
+            throw new CustomizeException(ResultCode.USER_NOT_EXIST);
+        }
+        ResponseTemplate template = ResponseTemplate.ok(user);
+        return JSONObject.toJSONString(template);
     }
 
 }

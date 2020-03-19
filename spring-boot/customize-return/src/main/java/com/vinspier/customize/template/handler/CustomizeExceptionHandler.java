@@ -1,5 +1,6 @@
 package com.vinspier.customize.template.handler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.vinspier.customize.template.common.ResponseTemplate;
 import com.vinspier.customize.template.common.ResultCode;
 import com.vinspier.customize.template.exception.CustomizeException;
@@ -25,16 +26,16 @@ public class CustomizeExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResponseTemplate handleException(Exception e){
+    public String handleException(Exception e){
         logger.error(e.getMessage(),e);
-        return ResponseTemplate.failed(ResultCode.SERVER_UNKNOW_ERROR);
+        return JSONObject.toJSONString(ResponseTemplate.failed(ResultCode.SERVER_UNKNOW_ERROR));
     }
 
     @ExceptionHandler(value = CustomizeException.class)
     @ResponseBody
-    public ResponseTemplate handleUserException(CustomizeException e){
+    public String handleUserException(CustomizeException e){
         logger.error(e.getMessage(),e);
-        return ResponseTemplate.failed(e.getResultCode());
+        return JSONObject.toJSONString(ResponseTemplate.failed(e.getResultCode()));
     }
 
 }
