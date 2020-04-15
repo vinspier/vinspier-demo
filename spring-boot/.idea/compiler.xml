@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="customize-returnTemplate" />
         <module name="demo" />
         <module name="demo-mvc" />
         <module name="eureka-demo" />
@@ -19,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="customize-returnTemplate" target="1.8" />
       <module name="demo" target="1.8" />
       <module name="demo-mvc" target="1.8" />
       <module name="eureka-demo" target="1.8" />
