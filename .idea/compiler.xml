@@ -6,11 +6,35 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="customize-returnTemplate" />
+        <module name="demo" />
+        <module name="demo-mvc" />
         <module name="elasticSearch" />
+        <module name="eureka-demo" />
+        <module name="feign-demo" />
+        <module name="http-client" />
+        <module name="hystrix-demo" />
+        <module name="itcast-rabbitmq" />
+        <module name="ribbon-demo" />
+        <module name="service-demo" />
+        <module name="user-consumer" />
+        <module name="zuul-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="customize-returnTemplate" target="1.8" />
+      <module name="demo" target="1.8" />
+      <module name="demo-mvc" target="1.8" />
       <module name="elasticSearch" target="1.8" />
+      <module name="eureka-demo" target="1.8" />
+      <module name="feign-demo" target="1.8" />
+      <module name="http-client" target="1.8" />
+      <module name="hystrix-demo" target="1.8" />
+      <module name="itcast-rabbitmq" target="1.8" />
+      <module name="ribbon-demo" target="1.8" />
+      <module name="service-demo" target="1.8" />
+      <module name="user-consumer" target="1.8" />
+      <module name="zuul-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -3,7 +3,19 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/spring-boot/customize-return/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/demo-mvc/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot/elastic-search/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/eureka-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/feign-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/http-client/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/hystrix-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/itcast-rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/ribbon-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/service-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/user-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/zuul-demo/pom.xml" />
       </list>
     </option>
   </component>

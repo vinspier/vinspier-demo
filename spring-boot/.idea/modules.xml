@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/http-client/http-client.iml" filepath="$PROJECT_DIR$/http-client/http-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/hystrix-demo/hystrix-demo.iml" filepath="$PROJECT_DIR$/hystrix-demo/hystrix-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/itcast-rabbitmq/itcast-rabbitmq.iml" filepath="$PROJECT_DIR$/itcast-rabbitmq/itcast-rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redis-demo/redis-demo.iml" filepath="$PROJECT_DIR$/redis-demo/redis-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/ribbon-demo/ribbon-demo.iml" filepath="$PROJECT_DIR$/ribbon-demo/ribbon-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-demo/service-demo.iml" filepath="$PROJECT_DIR$/service-demo/service-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-consumer/user-consumer.iml" filepath="$PROJECT_DIR$/user-consumer/user-consumer.iml" />

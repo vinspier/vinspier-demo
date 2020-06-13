@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/spring-boot/customize-return" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/demo-mvc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot/elastic-search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/eureka-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/feign-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/http-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/hystrix-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/itcast-rabbitmq" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/ribbon-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/service-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/user-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/zuul-demo" charset="UTF-8" />
   </component>
 </project>

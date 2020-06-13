@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/zuul-demo/pom.xml" />
         <option value="$PROJECT_DIR$/customize-return/pom.xml" />
         <option value="$PROJECT_DIR$/itcast-rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/redis-demo/pom.xml" />
       </list>
     </option>
   </component>
