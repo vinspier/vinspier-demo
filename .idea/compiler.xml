@@ -15,6 +15,7 @@
         <module name="http-client" />
         <module name="hystrix-demo" />
         <module name="itcast-rabbitmq" />
+        <module name="redis-demo" />
         <module name="ribbon-demo" />
         <module name="service-demo" />
         <module name="user-consumer" />
@@ -31,6 +32,7 @@
       <module name="http-client" target="1.8" />
       <module name="hystrix-demo" target="1.8" />
       <module name="itcast-rabbitmq" target="1.8" />
+      <module name="redis-demo" target="1.8" />
       <module name="ribbon-demo" target="1.8" />
       <module name="service-demo" target="1.8" />
       <module name="user-consumer" target="1.8" />

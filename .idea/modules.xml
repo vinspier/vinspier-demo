@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot/http-client/http-client.iml" filepath="$PROJECT_DIR$/spring-boot/http-client/http-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/hystrix-demo/hystrix-demo.iml" filepath="$PROJECT_DIR$/spring-boot/hystrix-demo/hystrix-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/itcast-rabbitmq/itcast-rabbitmq.iml" filepath="$PROJECT_DIR$/spring-boot/itcast-rabbitmq/itcast-rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot/redis-demo/redis-demo.iml" filepath="$PROJECT_DIR$/spring-boot/redis-demo/redis-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/ribbon-demo/ribbon-demo.iml" filepath="$PROJECT_DIR$/spring-boot/ribbon-demo/ribbon-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/service-demo/service-demo.iml" filepath="$PROJECT_DIR$/spring-boot/service-demo/service-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/user-consumer/user-consumer.iml" filepath="$PROJECT_DIR$/spring-boot/user-consumer/user-consumer.iml" />

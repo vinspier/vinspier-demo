@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/spring-boot/service-demo/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot/user-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot/zuul-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/redis-demo/pom.xml" />
       </list>
     </option>
   </component>
