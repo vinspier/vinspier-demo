@@ -3,10 +3,15 @@ package com.example.redis;
 import com.example.redis.service.DistributedLockService;
 import com.example.redis.service.RedisLockService;
 import com.example.redis.service.UserBankAccountService;
+import com.example.redis.util.NumberUtil;
+import com.example.redis.util.UuidUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.CountDownLatch;
@@ -16,12 +21,16 @@ import java.util.concurrent.Executors;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RedisApplication.class)
 public class RedisApplicationTests {
+	
+	private final Logger logger = LoggerFactory.getLogger(RedisApplicationTests.class);
 
 	private final String USERNAME = "fxb";
+	private final String SET_KEY_PREFIX = "article";
 	private final String LOCK_NAME = "fxb_lock";
 	private final Integer INIT_ACCOUNT = 500;
 
 	private final int MODIFY_TIMES = 500;
+
 
 	private CountDownLatch countDownLatch = new CountDownLatch(MODIFY_TIMES);
 	ExecutorService executorService = Executors.newFixedThreadPool(MODIFY_TIMES);
@@ -33,6 +42,9 @@ public class RedisApplicationTests {
 	@Autowired
 	private DistributedLockService distributedLockService;
 
+	@Autowired
+	private RedisTemplate redisTemplate;
+
 	// 初始设置账户值
 	@Test
 	public void initBankAccount() {
@@ -42,7 +54,7 @@ public class RedisApplicationTests {
 	// 获取当前值
 	@Test
 	public void get() {
-		System.out.println(userBankAccountService.get(USERNAME));
+		logger.info("---------------------------[info]" + userBankAccountService.get(USERNAME));
 	}
 
 	// 模拟没有加分布式锁的高并发修改场景
@@ -50,7 +62,7 @@ public class RedisApplicationTests {
 	@Test
 	public void multiAddWithoutLock() throws InterruptedException{
 		Integer originalAccount = userBankAccountService.get(USERNAME);
-		System.out.println("original account:  " + originalAccount);
+		logger.info("---------------------------[info]" + "original account:  " + originalAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			executorService.execute(() -> {
@@ -61,9 +73,9 @@ public class RedisApplicationTests {
 		countDownLatch.await();
 		Thread.sleep(5000);
 		Long end = System.currentTimeMillis();
-		System.out.println("time took " + (end - start));
+		logger.info("---------------------------[info]" + "time took " + (end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
-		System.out.println("current account:  " + currentAccount);
+		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
 	}
 
 	// 模拟加分布式锁的高并发修改场景
@@ -73,7 +85,7 @@ public class RedisApplicationTests {
 	@Test
 	public void multiDecrementWithLock() throws InterruptedException{
 		Integer initAccount = userBankAccountService.get(USERNAME);
-		System.out.println("initial account:  " + initAccount);
+		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			new Thread(() -> {
@@ -94,9 +106,9 @@ public class RedisApplicationTests {
 		countDownLatch.await();
 		Thread.sleep(10000);
 		Long end = System.currentTimeMillis();
-		System.out.println("time took " + (end - start));
+		logger.info("---------------------------[info]" + "time took " + (end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
-		System.out.println("current account:  " + currentAccount);
+		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
 	}
 
 	// 模拟加redisson分布式锁的高并发修改场景
@@ -106,7 +118,7 @@ public class RedisApplicationTests {
 	@Test
 	public void multiDecrementWithRedissonLock() throws InterruptedException{
 		Integer initAccount = userBankAccountService.get(USERNAME);
-		System.out.println("initial account:  " + initAccount);
+		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			new Thread(() -> {
@@ -127,8 +139,26 @@ public class RedisApplicationTests {
 		countDownLatch.await();
 		Thread.sleep(10000);
 		Long end = System.currentTimeMillis();
-		System.out.println("time took " + (end - start));
+		logger.info("---------------------------[info]" + "time took " + (end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
-		System.out.println("current account:  " + currentAccount);
+		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
+	}
+
+	@Test
+	public void addZSet(){
+		for (int i = 0; i < 5; i++){
+			redisTemplate.opsForZSet().add(SET_KEY_PREFIX, NumberUtil.randomLong(),NumberUtil.randomDouble());
+		}
+	}
+
+	@Test
+	public void rank(){
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().rank("article", -574387857031090747L));
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().score("article", -574387857031090747L));
+		redisTemplate.opsForZSet().incrementScore("article", -574387857031090747L,1.0D);
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().rank("article", -574387857031090747L));
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().score("article", -574387857031090747L));
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().size("article"));
+		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().rangeWithScores("article",0L,3L));
 	}
 }

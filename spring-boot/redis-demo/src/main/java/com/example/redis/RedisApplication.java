@@ -8,16 +8,17 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.support.collections.DefaultRedisZSet;
+import org.springframework.data.redis.support.collections.RedisZSet;
 
 @SpringBootApplication
-// @EnableAutoConfiguration
 // @SpringBootConfiguration
 public class RedisApplication {
 
 	/** 自定义序列化的方式 默认采用的是JDK的方式 */
 	@Bean
-	public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory){
-		RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
+	public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
+		RedisTemplate redisTemplate = new RedisTemplate();
 		RedisSerializer<String> redisSerializer = new StringRedisSerializer();
 		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 		redisTemplate.setKeySerializer(redisSerializer);
@@ -27,6 +28,7 @@ public class RedisApplication {
 		redisTemplate.setConnectionFactory(redisConnectionFactory);
 		return redisTemplate;
 	}
+
 
 
 

@@ -7,4 +7,5 @@ public interface UserBankAccountService {
     void decrement(String username,Integer count);
     Integer get(String username);
     void set(String username,Integer count);
+    void addSet(String key,Long value,Double score);
 }
