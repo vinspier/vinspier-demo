@@ -9,4 +9,9 @@ public interface UserService {
     User findByUsername(String username);
     User findById(Long id);
     List<User> getList();
+
+    /** 测试 事务传播特性之REQUIRED */
+    void requiredTransaction();
+    /** 测试 事务传播特性之NEVER */
+    void neverTransaction();
 }

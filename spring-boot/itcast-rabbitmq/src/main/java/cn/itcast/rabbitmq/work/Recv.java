@@ -11,6 +11,7 @@ import com.rabbitmq.client.Envelope;
 import cn.itcast.rabbitmq.util.ConnectionUtil;
 
 // 消费者1
+// 手动ack确认机制
 public class Recv {
     private final static String QUEUE_NAME = "test_work_queue";
 
@@ -34,7 +35,7 @@ public class Recv {
                 System.out.println(" [消费者1] received : " + msg + "!");
                 try {
                     // 模拟完成任务的耗时：1000ms
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                 }
                 // 手动ACK

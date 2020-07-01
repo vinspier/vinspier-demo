@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring-boot/aop-demo" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -17,6 +20,7 @@
         <option value="$PROJECT_DIR$/spring-boot/user-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot/zuul-demo/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot/redis-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/aop-demo/pom.xml" />
       </list>
     </option>
   </component>

@@ -34,7 +34,7 @@ public class Recv2 {
                 System.out.println(" [消费者2] received : " + msg + "!");
                 try {
                     // 模拟完成任务的耗时：1000ms
-                    Thread.sleep(1500);
+                    Thread.sleep(3500);
                 } catch (InterruptedException e) {
                 }
                 // 手动ACK

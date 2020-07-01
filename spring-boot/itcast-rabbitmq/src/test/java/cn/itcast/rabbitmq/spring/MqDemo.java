@@ -18,7 +18,9 @@ public class MqDemo {
     @Test
     public void testSend() throws InterruptedException {
         String msg = "hello, Spring boot amqp";
-        this.amqpTemplate.convertAndSend("spring.test.exchange","a.b", msg);
+        for(int i = 0; i < 10; i++){
+            this.amqpTemplate.convertAndSend("spring.test.exchange","a.b", msg + i);
+        }
         // 等待10秒后再结束
         Thread.sleep(10000);
     }

@@ -6,7 +6,10 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 /**
  * 生产者，模拟为商品服务
- */
+ *
+ * 发布订阅中的
+ * route模式
+ * */
 public class Send {
     private final static String EXCHANGE_NAME = "direct_exchange_test";
 

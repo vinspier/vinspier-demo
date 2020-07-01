@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 import javax.sql.DataSource;
 
 @Configuration
-//@EnableConfigurationProperties(JdbcProperties.class)
+@EnableConfigurationProperties(JdbcProperties.class)
 public class JdbcConfiguration1 {
 
     /**

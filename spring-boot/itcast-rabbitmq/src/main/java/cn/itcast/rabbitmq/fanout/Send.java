@@ -5,6 +5,10 @@ import cn.itcast.rabbitmq.util.ConnectionUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
+/**
+ * 发布订阅中的
+ * 广播模式fanout
+ * */
 public class Send {
 
     private final static String EXCHANGE_NAME = "fanout_exchange_test";
@@ -15,7 +19,7 @@ public class Send {
         // 获取通道
         Channel channel = connection.createChannel();
         
-        // 声明exchange，指定类型为fanout  durable参数设置 管道和队列都为持久化 这样子消息不易丢失
+        // 1、声明exchange，2、指定类型为fanout  3、durable参数设置 管道和队列都为持久化 这样子消息不易丢失
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout",true);
         
         // 消息内容
