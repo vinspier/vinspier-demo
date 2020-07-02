@@ -14,9 +14,31 @@ public class MvcDemoApplicationTest {
     @Autowired
     private UserService userService;
 
+    /**
+     * 测试 事务传播特性 之 never
+     * */
     @Test
     public void testTransaction(){
-            userService.requiredTransaction();
+        userService.requiredTransaction();
     }
 
+    /**
+     * 调用者存在事务
+     * 测试 事务 同个类中 方法调用
+     * 事务失效
+     * */
+    @Test
+    public void testTransaction1(){
+        userService.outerWithTransaction();
+    }
+
+    /**
+     * 调用者不存在事务
+     * 测试 事务 同个类中 方法调用
+     * 事务失效
+     * */
+    @Test
+    public void testTransaction2(){
+        userService.outerWithoutTransaction();
+    }
 }

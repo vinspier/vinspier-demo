@@ -14,4 +14,11 @@ public interface UserService {
     void requiredTransaction();
     /** 测试 事务传播特性之NEVER */
     void neverTransaction();
+
+    /** 外部调用 支持事务 */
+    void outerWithTransaction();
+    /** 外部调用 不支持事务 */
+    void outerWithoutTransaction();
+    /** 内部被调用 支持事务 */
+    void innerWithTransaction();
 }

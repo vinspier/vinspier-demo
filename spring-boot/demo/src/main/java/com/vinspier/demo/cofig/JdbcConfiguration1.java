@@ -55,7 +55,7 @@ public class JdbcConfiguration1 {
     /**
      * 注解式注入
      * */
-    @Bean
+    @Bean()
     @ConfigurationProperties(prefix = "jdbc")
     public DataSource dataSource(){
         DruidDataSource dataSource = new DruidDataSource();
