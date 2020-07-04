@@ -33,4 +33,8 @@ public class UserController {
         return template;
     }
 
+    @RequestMapping(value = "/outerWithTransaction")
+    public void outerWithTransaction(){
+        userService.outerWithTransaction();
+    }
 }

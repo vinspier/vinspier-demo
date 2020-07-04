@@ -21,4 +21,8 @@ public interface UserService {
     void outerWithoutTransaction();
     /** 内部被调用 支持事务 */
     void innerWithTransaction();
+    /** 抛出checked异常 */
+    void throwChecked() throws Exception;
+    /** 抛出uncheckedException */
+    void throwUnchecked();
 }

@@ -25,7 +25,7 @@ public class MvcDemoApplicationTest {
     /**
      * 调用者存在事务
      * 测试 事务 同个类中 方法调用
-     * 事务失效
+     * 事务有效
      * */
     @Test
     public void testTransaction1(){
@@ -40,5 +40,23 @@ public class MvcDemoApplicationTest {
     @Test
     public void testTransaction2(){
         userService.outerWithoutTransaction();
+    }
+
+    /**
+     * 测试 抛出检查异常
+     * 事务会失效
+     * */
+    @Test
+    public void testTransactionChecked() throws Exception{
+        userService.throwChecked();
+    }
+
+    /**
+     * 测试 抛出免检异常
+     * 事务有效
+     * */
+    @Test
+    public void testTransactionUnchecked(){
+        userService.throwUnchecked();
     }
 }

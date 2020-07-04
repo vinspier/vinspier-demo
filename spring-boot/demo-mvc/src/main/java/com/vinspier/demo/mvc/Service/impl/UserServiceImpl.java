@@ -102,6 +102,22 @@ public class UserServiceImpl implements UserService{
         userMapper.insert(user1);
     }
 
+    @Override
+    @Transactional
+    public void throwChecked() throws Exception{
+        User user = getUser();
+        userMapper.insert(user);
+        throw new Exception("抛出检查异常");
+    }
+
+    @Override
+    @Transactional
+    public void throwUnchecked() {
+        User user = getUser();
+        userMapper.insert(user);
+        throw new RuntimeException("抛出运行时异常 免检异常");
+    }
+
     private User getUser(){
         User user = new User();
         user.setUsername(UUID.randomUUID().toString());
