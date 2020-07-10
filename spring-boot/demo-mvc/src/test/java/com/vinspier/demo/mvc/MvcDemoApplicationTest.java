@@ -1,5 +1,6 @@
 package com.vinspier.demo.mvc;
 
+import com.vinspier.demo.mvc.Service.OrderService;
 import com.vinspier.demo.mvc.Service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,9 @@ public class MvcDemoApplicationTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     /**
      * 测试 事务传播特性 之 never
@@ -58,5 +62,23 @@ public class MvcDemoApplicationTest {
     @Test
     public void testTransactionUnchecked(){
         userService.throwUnchecked();
+    }
+
+    /**
+     * 测试被调用方法 抛出免检异常
+     * 事务失效 不会回滚
+     * */
+    @Test
+    public void testTransactionCalledThrowChecked(){
+        orderService.doTransactionThrewChecked();
+    }
+
+    /**
+     * 测试被调用方法 抛出免检异常
+     * 事务会回滚
+     * */
+    @Test
+    public void testTransactionCalledThrowUnChecked(){
+        orderService.doTransactionThrewUnChecked();
     }
 }

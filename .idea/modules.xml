@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/aop-demo/aop-demo.iml" filepath="$PROJECT_DIR$/spring-boot/aop-demo/aop-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/customize-return/customize-returnTemplate.iml" filepath="$PROJECT_DIR$/spring-boot/customize-return/customize-returnTemplate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/demo/demo.iml" filepath="$PROJECT_DIR$/spring-boot/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/demo-mvc/demo-mvc.iml" filepath="$PROJECT_DIR$/spring-boot/demo-mvc/demo-mvc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/elastic-search/elasticSearch.iml" filepath="$PROJECT_DIR$/spring-boot/elastic-search/elasticSearch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/eureka-demo/eureka-demo.iml" filepath="$PROJECT_DIR$/spring-boot/eureka-demo/eureka-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/feign-demo/feign-demo.iml" filepath="$PROJECT_DIR$/spring-boot/feign-demo/feign-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/http-client/http-client.iml" filepath="$PROJECT_DIR$/spring-boot/http-client/http-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/hystrix-demo/hystrix-demo.iml" filepath="$PROJECT_DIR$/spring-boot/hystrix-demo/hystrix-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/itcast-rabbitmq/itcast-rabbitmq.iml" filepath="$PROJECT_DIR$/spring-boot/itcast-rabbitmq/itcast-rabbitmq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/redis-demo/redis-demo.iml" filepath="$PROJECT_DIR$/spring-boot/redis-demo/redis-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/ribbon-demo/ribbon-demo.iml" filepath="$PROJECT_DIR$/spring-boot/ribbon-demo/ribbon-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/service-demo/service-demo.iml" filepath="$PROJECT_DIR$/spring-boot/service-demo/service-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/user-consumer/user-consumer.iml" filepath="$PROJECT_DIR$/spring-boot/user-consumer/user-consumer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot/zuul-demo/zuul-demo.iml" filepath="$PROJECT_DIR$/spring-boot/zuul-demo/zuul-demo.iml" />
     </modules>
   </component>
 </project>
