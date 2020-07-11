@@ -33,7 +33,7 @@ public class Recv2 {
                 String msg = new String(body);
                 System.out.println(" [x] received : " + msg + "!");
                 // 手动进行ACK
-                channel.basicAck(envelope.getDeliveryTag(), false);
+               // channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
         // 监听队列，第二个参数false，手动进行ACK

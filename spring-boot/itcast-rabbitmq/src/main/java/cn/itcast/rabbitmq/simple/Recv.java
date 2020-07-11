@@ -35,7 +35,7 @@ public class Recv {
             }
         };
         // RabbitMQ有一个ACK机制。当消费者获取消息后，会向RabbitMQ发送回执ACK，告知消息已经被接收。不过这种回执ACK
-        // 监听队列，第二个参数：是否自动进行消息确认。由第二个参数指定是否自动进行自动ACK
+        // 第一个参数：监听队列，第二个参数：是否自动进行消息确认。由第二个参数指定是否自动进行自动ACK
         channel.basicConsume(QUEUE_NAME, true, consumer);
     }
 }

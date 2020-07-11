@@ -7,6 +7,7 @@ import com.vinspier.aop.pojo.SystemLog;
 import com.vinspier.aop.service.SystemLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -70,7 +71,7 @@ public class SystemLogAnnotationAspect {
     /**
      * 在切点前后增强方法
      * */
-   /* @Around("pointcut()")
+  /*  @Around("pointcut()")
     public void aroundMethod(ProceedingJoinPoint joinPoint){
         logger.info("[------------- 调用环绕增强方法 前 -------------]");
         logger.info("[------------- 反射回调切点的方法 -------------]");

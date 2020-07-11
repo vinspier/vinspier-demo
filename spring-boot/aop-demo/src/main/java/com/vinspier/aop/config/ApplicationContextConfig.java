@@ -13,7 +13,9 @@ public class ApplicationContextConfig implements ApplicationContextAware {
     // 重写setApplicationContext方法，把参数ApplicationContext复制给静态的ApplicationContext
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        ApplicationContextConfig.applicationContext = applicationContext;
+        if (this.applicationContext == null){
+            ApplicationContextConfig.applicationContext = applicationContext;
+        }
     }
 
     // 定义get方法获取上下文对象

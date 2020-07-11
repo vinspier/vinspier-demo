@@ -103,7 +103,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @Transactional
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void throwChecked() throws Exception{
         User user = getUser();
         userMapper.insert(user);

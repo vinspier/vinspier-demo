@@ -33,14 +33,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public void doTransactionThrewUnChecked() {
+        User user = getUser();
+        userMapper.insert(user);
         try {
             userService.throwUnchecked();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        User user = getUser();
-        userMapper.insert(user);
-        throw new RuntimeException("抛出运行时异常 免检异常");
+
+      //  throw new RuntimeException("抛出运行时异常 免检异常");
     }
 
     /**
@@ -49,11 +50,17 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public void doTransactionThrewChecked() {
+        User user = getUser();
+        userMapper.insert(user);
         try {
             userService.throwChecked();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 虽然 上面捕捉了错误并处理了
+        // 但是下面抛出了免检异常
+        // 被调用方法的事务 与 当前事务是同一个 所有所有操作都会回滚
+        throw new RuntimeException("抛出运行时异常 免检异常");
     }
 
     private User getUser(){
