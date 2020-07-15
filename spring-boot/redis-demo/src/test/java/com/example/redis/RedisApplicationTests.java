@@ -27,13 +27,13 @@ public class RedisApplicationTests {
 	private final String USERNAME = "fxb";
 	private final String SET_KEY_PREFIX = "article";
 	private final String LOCK_NAME = "fxb_lock";
-	private final Integer INIT_ACCOUNT = 500;
+	private final Integer INIT_ACCOUNT = 1555500;
 
 	private final int MODIFY_TIMES = 500;
 
 
 	private CountDownLatch countDownLatch = new CountDownLatch(MODIFY_TIMES);
-	ExecutorService executorService = Executors.newFixedThreadPool(MODIFY_TIMES);
+	ExecutorService executorService = Executors.newCachedThreadPool();
 
 	@Autowired
 	private UserBankAccountService userBankAccountService;
@@ -62,18 +62,17 @@ public class RedisApplicationTests {
 	@Test
 	public void multiAddWithoutLock() throws InterruptedException{
 		Integer originalAccount = userBankAccountService.get(USERNAME);
-		logger.info("---------------------------[info]" + "original account:  " + originalAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			executorService.execute(() -> {
+				countDownLatch.countDown();
 				userBankAccountService.add(USERNAME,1);
 			});
-			countDownLatch.countDown();
 		}
-		countDownLatch.await();
 		Thread.sleep(5000);
 		Long end = System.currentTimeMillis();
-		logger.info("---------------------------[info]" + "time took " + (end - start));
+		logger.info("---------------------------[info]" + "original account:  " + originalAccount);
+		logger.info("---------------------------[info]" + "decrement count = {} and time took {} ms",MODIFY_TIMES,(end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
 		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
 	}
@@ -85,10 +84,10 @@ public class RedisApplicationTests {
 	@Test
 	public void multiDecrementWithLock() throws InterruptedException{
 		Integer initAccount = userBankAccountService.get(USERNAME);
-		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			new Thread(() -> {
+				countDownLatch.countDown();
 				// 获取锁成功 则更新
 				boolean locked = redisLockService.lock(LOCK_NAME);
 				try {
@@ -101,12 +100,11 @@ public class RedisApplicationTests {
 					redisLockService.unLock(LOCK_NAME);
 				}
 			}).start();
-			countDownLatch.countDown();
 		}
-		countDownLatch.await();
 		Thread.sleep(10000);
 		Long end = System.currentTimeMillis();
-		logger.info("---------------------------[info]" + "time took " + (end - start));
+		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
+		logger.info("---------------------------[info]" + "decrement count = {} and time took {} ms",MODIFY_TIMES,(end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
 		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
 	}
@@ -118,10 +116,10 @@ public class RedisApplicationTests {
 	@Test
 	public void multiDecrementWithRedissonLock() throws InterruptedException{
 		Integer initAccount = userBankAccountService.get(USERNAME);
-		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
 		Long start = System.currentTimeMillis();
 		for(int i = 0; i < MODIFY_TIMES; i++){
 			new Thread(() -> {
+				countDownLatch.countDown();
 				// 获取锁成功 则更新
 				boolean locked = distributedLockService.lock(LOCK_NAME);
 				try {
@@ -134,12 +132,11 @@ public class RedisApplicationTests {
 					distributedLockService.unlock(LOCK_NAME);
 				}
 			}).start();
-			countDownLatch.countDown();
 		}
-		countDownLatch.await();
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 		Long end = System.currentTimeMillis();
-		logger.info("---------------------------[info]" + "time took " + (end - start));
+		logger.info("---------------------------[info]" + "initial account:  " + initAccount);
+		logger.info("---------------------------[info]" + "decrement count = {} and time took {} ms",MODIFY_TIMES,(end - start));
 		Integer currentAccount = userBankAccountService.get(USERNAME);
 		logger.info("---------------------------[info]" + "current account:  " + currentAccount);
 	}
