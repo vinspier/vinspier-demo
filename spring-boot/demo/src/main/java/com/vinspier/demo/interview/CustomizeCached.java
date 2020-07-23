@@ -8,6 +8,10 @@ public interface CustomizeCached<K,V> {
 
     V remove(K key);
 
+    K removeLast();
+
+    int size();
+
     void iterator();
 
 }

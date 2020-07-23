@@ -15,12 +15,36 @@ public class CustomizeCache<K,V> implements CustomizeCached<K,V>{
 
     private HashMap<K,V> map;
 
-    public CustomizeCache() {
+    /** 默认缓存元素限制大小 */
+
+    private final int DEFAULT_CAPACITY = 1 << 30;
+
+    /** 实际缓存元素限制大小 */
+    private int capacity;
+
+    /** 实际hashMap中的元素大小 */
+    private int size;
+
+    private void init(int capacity){
         head  = new Node<>();
         tail = new Node<>();
         head.next =  tail;
         tail.pre = head;
+        size = 0;
+        this.capacity = capacity;
         map = new HashMap<>();
+    }
+
+    public CustomizeCache() {
+        init(DEFAULT_CAPACITY);
+    }
+
+    public CustomizeCache(int capacity){
+        if (capacity < 1){
+            throw new IllegalArgumentException("cache max capacity must be greater than 0");
+        }
+        this.capacity = capacity;
+        init(Math.min(capacity,DEFAULT_CAPACITY));
     }
 
     /**
@@ -34,8 +58,15 @@ public class CustomizeCache<K,V> implements CustomizeCached<K,V>{
             Node<K> node = new Node<>(key);
             addFirst(node);
             map.put(key,val);
+            // 缓存满了 移除最后一个节点
+            if (size >= capacity){
+                removeLast();
+            }else{
+                size ++;
+            }
             return val;
         }
+        // 如果存在 则将原先的节点移动到头节点
         moveToFirst(key);
         map.put(key,val);
        return oldVal;
@@ -48,7 +79,7 @@ public class CustomizeCache<K,V> implements CustomizeCached<K,V>{
     @Override
     public V get(K key) {
         V val = map.get(key);
-        if (val != null){
+        if (map.keySet().contains(key)){
             moveToFirst(key);
         }
         return val;
@@ -65,6 +96,25 @@ public class CustomizeCache<K,V> implements CustomizeCached<K,V>{
         // 删除节点
         removeNode(key);
         return val;
+    }
+
+    /** 移除 最后一个节点 */
+    @Override
+    public K removeLast() {
+        Node<K> temp = tail.pre;
+        temp.pre.next = tail;
+        tail.pre = temp.pre;
+        K key = temp.getElement();
+        // help GC
+        temp.pre = null;
+        temp.next = null;
+        return key;
+    }
+
+    /** 返回缓存中大小 */
+    @Override
+    public int size() {
+        return size;
     }
 
     /** 添加到第一位 */
@@ -95,16 +145,20 @@ public class CustomizeCache<K,V> implements CustomizeCached<K,V>{
     private Node<K> removeNode(K key){
         // 遍历寻找元素 并替换
         Node<K> temp = findNode(key);
-        // 非第一个 处理节点处需要替换位置
-        temp.next.pre = temp.pre;
-        temp.pre.next = temp.next;
-        return temp;
+        if (temp != tail){
+            // 非第一个 处理节点处需要替换位置
+            temp.next.pre = temp.pre;
+            temp.pre.next = temp.next;
+            size --;
+            return temp;
+        }
+        return null;
     }
 
     /** 查找节点 */
     private Node<K> findNode(K key){
         Node<K> temp = head.next;
-        while (temp != tail && temp.getElement() != key){
+        while (temp != tail && temp.getElement().hashCode() != key.hashCode() && !temp.getElement().equals(key)){
             temp = temp.next;
         }
         return temp;
