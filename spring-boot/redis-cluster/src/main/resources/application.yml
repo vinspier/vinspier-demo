@@ -1,0 +1,25 @@
+server:
+  port: 80
+spring:
+  application:
+    name: redis-cluster
+  redis:
+    database: 0
+    jedis:
+      pool:
+        max-active: 10
+        max-wait: 3000
+        min-idle: 1
+        max-idle: 8
+    cluster:
+      nodes:
+      - 192.168.124.13:8000
+      - 192.168.124.13:8001
+      - 192.168.124.13:8002
+      - 192.168.124.13:8003
+      - 192.168.124.13:8004
+      - 192.168.124.13:8005
+
+
+
+
