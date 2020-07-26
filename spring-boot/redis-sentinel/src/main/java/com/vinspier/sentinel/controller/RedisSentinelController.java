@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+import java.util.UUID;
+
 @RestController
 public class RedisSentinelController {
 
@@ -39,5 +42,44 @@ public class RedisSentinelController {
         redisTemplate.opsForValue().set(key,value);
         logger.info("put data to redis [key={},value={}]",key,value);
         return true;
+    }
+
+
+    /**
+     * 当主节点发生故障后，从节点选举产生作为新的主节点
+     * 服务恢复可用
+     *
+     * */
+    @RequestMapping("/randomPut")
+    public void randomPut(){
+        Random random = new Random();
+        new Thread(() -> {
+            while (true){
+                String key;
+                int val;
+                key = UUID.randomUUID().toString().substring(0,10);
+                val = random.nextInt();
+                redisTemplate.opsForValue().set(key, val);
+                logger.info(">>>message: put data to redis @data=[{}={}]",key,val);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(() -> {
+            String key = UUID.randomUUID().toString().substring(0,10);
+            while (true){
+                redisTemplate.opsForValue().get(key);
+                logger.info(">>>message: get data from redis @key=[{}]",key);
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 }
