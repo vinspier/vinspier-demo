@@ -47,18 +47,33 @@ public class RedisSentinelController {
     @RequestMapping("/randomPut")
     public void randomPut(){
         Random random = new Random();
-        String key;
-        int val;
-        for (int i = 0; i < 20; i++){
-            key = UUID.randomUUID().toString().substring(0,10);
-            val = random.nextInt();
-            redisTemplate.opsForValue().set(key, val);
-            logger.info(">>>message: put data to redis @data=[{}={}]",key,val);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        new Thread(() -> {
+            while (true){
+                String key;
+                int val;
+                key = UUID.randomUUID().toString().substring(0,10);
+                val = random.nextInt();
+                redisTemplate.opsForValue().set(key, val);
+                logger.info(">>>message: put data to redis @data=[{}={}]",key,val);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        }).start();
+        new Thread(() -> {
+            String key = UUID.randomUUID().toString().substring(0,10);
+            while (true){
+                redisTemplate.opsForValue().get(key);
+                logger.info(">>>message: get data from redis @key=[{}]",key);
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 }
