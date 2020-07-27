@@ -7,17 +7,19 @@ spring:
     # redis 集群环境只支持一个数据库
     database: 0
     # 连接超时配置
-    timeout: 6000
-    jedis:
+    timeout: 5000
+    lettuce:
       pool:
         max-active: 10
         # 最长等待时间
         max-wait: -1
         min-idle: 1
         max-idle: 8
+      # 集群拓扑动态感应
+      # 客户端能够根据 redis cluster 集群的变化，动态改变客户端的节点情况，完成故障转移
       cluster:
         refresh:
-        # 开启自适应拓扑刷新 当集群中的某一节点宕机 连接池自动更新信息
+          period: 1000
           adaptive: true
     cluster:
       nodes:
