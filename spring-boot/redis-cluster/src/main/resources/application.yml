@@ -4,13 +4,21 @@ spring:
   application:
     name: redis-cluster
   redis:
+    # redis 集群环境只支持一个数据库
     database: 0
+    # 连接超时配置
+    timeout: 6000
     jedis:
       pool:
         max-active: 10
-        max-wait: 3000
+        # 最长等待时间
+        max-wait: -1
         min-idle: 1
         max-idle: 8
+      cluster:
+        refresh:
+        # 开启自适应拓扑刷新 当集群中的某一节点宕机 连接池自动更新信息
+          adaptive: true
     cluster:
       nodes:
       - 192.168.124.13:8000
@@ -19,5 +27,7 @@ spring:
       - 192.168.124.13:8003
       - 192.168.124.13:8004
       - 192.168.124.13:8005
+      max-redirects: 5
+
 
 

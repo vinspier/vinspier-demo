@@ -48,7 +48,6 @@ public class RedisSentinelController {
     public void randomPut(){
         Random random = new Random();
         new Thread(() -> {
-            while (true){
                 String key;
                 int val;
                 key = UUID.randomUUID().toString().substring(0,10);
@@ -60,10 +59,25 @@ public class RedisSentinelController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
         }).start();
+    }
+
+    @RequestMapping("/randomPut1")
+    public void randomPut1(){
+        Random random = new Random();
+        String key;
+        int val;
+        key = UUID.randomUUID().toString().substring(0,10);
+        val = random.nextInt();
+        redisTemplate.opsForValue().set(key, val);
+        logger.info(">>>message: put data to redis @data=[{}={}]",key,val);
+    }
+
+    @RequestMapping("/randomGet")
+    public void randomGet(){
         new Thread(() -> {
-            String key = UUID.randomUUID().toString().substring(0,10);
+            // String key = UUID.randomUUID().toString().substring(0,10);
+             String key = "fxb";
             while (true){
                 redisTemplate.opsForValue().get(key);
                 logger.info(">>>message: get data from redis @key=[{}]",key);
@@ -74,6 +88,14 @@ public class RedisSentinelController {
                 }
             }
         }).start();
+    }
 
+    @RequestMapping("/randomGet1")
+    public String randomGet1(){
+        String result = "";
+        String key = "fxb";
+        redisTemplate.opsForValue().get(key);
+        logger.info(">>>message: get data from redis @key=[{}]",key);
+        return result;
     }
 }
