@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="aop-demo:war">
+    <output-path>$PROJECT_DIR$/spring-boot/aop-demo/target</output-path>
+    <root id="archive" name="aop-demo.war">
+      <element id="artifact" artifact-name="aop-demo:war exploded" />
+    </root>
+  </artifact>
+</component>

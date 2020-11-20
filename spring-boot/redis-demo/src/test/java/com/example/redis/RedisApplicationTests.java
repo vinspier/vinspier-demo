@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.nio.ch.ThreadPool;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -158,4 +159,39 @@ public class RedisApplicationTests {
 		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().size("article"));
 		logger.info("---------------------------[info]" + redisTemplate.opsForZSet().rangeWithScores("article",0L,3L));
 	}
+
+	@Test
+	public void testSetIfAbsent(){
+		redisLockService.lock("lock",10000);
+	}
+
+	/**
+	 * 阻塞方式获取分布式锁
+	 */
+	@Test
+	public void testSyncLock(){
+		ExecutorService threadPool = Executors.newFixedThreadPool(10);
+		for (int i = 0; i < 20; i++){
+			threadPool.execute(() -> {
+				if (redisLockService.lock("LOCK",1500)){
+					try {
+						// 模拟业务逻辑处理 比锁的有效时间长
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} finally {
+						redisLockService.unLock("LOCK");
+					}
+				};
+			});
+		}
+		try {
+			// 模拟业务逻辑处理 比锁的有效时间长
+			Thread.sleep(600000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		threadPool.shutdown();
+	}
+
 }

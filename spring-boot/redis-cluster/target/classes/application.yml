@@ -1,0 +1,33 @@
+server:
+  port: 80
+spring:
+  application:
+    name: redis-cluster
+  redis:
+    # redis 集群环境只支持一个数据库
+    database: 0
+    # 连接超时配置
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 10
+        # 最长等待时间
+        max-wait: -1
+        min-idle: 1
+        max-idle: 8
+      cluster:
+        refresh:
+          period: 1000
+          adaptive: true
+    cluster:
+      nodes:
+      - 192.168.124.13:8000
+      - 192.168.124.13:8001
+      - 192.168.124.13:8002
+      - 192.168.124.13:8003
+      - 192.168.124.13:8004
+      - 192.168.124.13:8005
+      max-redirects: 5
+
+
+

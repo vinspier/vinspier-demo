@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: customize-template
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/shopping?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+nacos:
+  config:
+    server-addr: 96.45.191.190:8848
+  discovery:
+    server-addr: 96.45.191.190:8848
+
+
+mybatis:
+  type-aliases-package: com.vinspier.customize.template.pojo
+  mapper-locations: classpath:com/vinspier/customize/template/mapper/*.xml
+
+
+
