@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -62,7 +63,8 @@ public class RedisLockServiceImpl implements RedisLockService {
             // key的值 在有效时间内 则等待一小段时间
             if (expiredTime > System.currentTimeMillis()){
                 try {
-                    Thread.sleep(expiredTime - System.currentTimeMillis() - 1);
+                    // 随机延迟 避免脑裂
+                    Thread.sleep(new Random().nextInt(Long.valueOf(expiredTime - System.currentTimeMillis() - 1).intValue()));
                     continue;
                 } catch (InterruptedException e) {
                     logger.info("occur an error when wait for a moment!");
