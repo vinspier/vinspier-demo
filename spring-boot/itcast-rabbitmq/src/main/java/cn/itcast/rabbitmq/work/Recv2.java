@@ -22,6 +22,9 @@ public class Recv2 {
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         // 设置每个消费者同时只能处理一条消息
+        // prefetchCount 消费者预获取队列中的消息条数
+        // 尽可能快速推送消息的机制 会更具这个值 mq会将消息提前发送至消费者的本地缓存
+        // 客户端可以根据自身能力 配置 能者多劳
         channel.basicQos(1);
         // 定义队列的消费者
         DefaultConsumer consumer = new DefaultConsumer(channel) {
