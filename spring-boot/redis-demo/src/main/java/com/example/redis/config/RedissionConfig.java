@@ -23,7 +23,8 @@ public class RedissionConfig {
 
         Config config = new Config();
         String url = "redis://" + redisProperties.getHost() + ":" + redisProperties.getPort();
-        config.useSingleServer().setAddress(url)
+        config.useSingleServer()
+                .setAddress(url)
                 .setDatabase(redisProperties.getDatabase());
                 // .setPassword(redisProperties.getPassword())
 
